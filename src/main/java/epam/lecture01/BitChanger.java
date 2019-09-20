@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class BitChanger {
 
-    public static final String YES = "y";
+    private static final String YES = "y";
 
     public static void main(String[] args) {
         int number = 0b011010;
