@@ -6,6 +6,9 @@ package epam.lecture01;
 import java.util.Scanner;
 
 public class BitChanger {
+
+    public static final String YES = "y";
+
     public static void main(String[] args) {
         int number = 0b011010;
         System.out.println("Before = " + number + "   After = " + change(number, 1, true));
@@ -19,7 +22,7 @@ public class BitChanger {
         int pos = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Is the bit set? [Y/y] : ");
-        boolean enabled = "y".equals(scanner.nextLine().trim().toLowerCase());
+        boolean enabled = YES.equals(scanner.nextLine().trim().toLowerCase());
         System.out.println("Result: " + change(number, pos, enabled));
     }
 
