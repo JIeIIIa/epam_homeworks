@@ -21,7 +21,7 @@ public class OppositeConverter {
      * @return an opposite number to a given number
      * @throws IllegalArgumentException if a number is not contained in the specified range
      */
-    private static int convert(int number) {
+    static int convert(int number) {
         validate(number);
         return add(~number, 1);
     }
@@ -32,7 +32,7 @@ public class OppositeConverter {
      * @param number a given number
      * @return an opposite number to a given number
      */
-    private static int convertV2(int number) {
+    static int convertV2(int number) {
         validate(number);
         return add(0xFFFFFFFF ^ number, 1);
     }
