@@ -21,9 +21,9 @@ public class BinaryConverter {
      * @param line string representation of a binary number
      * @return int representation of a string with a binary number
      */
-    private static int convert(String line) {
-        if (line == null) {
-            throw new IllegalArgumentException("Argument should not be null");
+    static int convert(String line) {
+        if (line == null || line.isEmpty()) {
+            throw new IllegalArgumentException("Argument should NOT be null or empty");
         }
         int pow = 1;
         int result = 0;
@@ -46,7 +46,7 @@ public class BinaryConverter {
      * @return int representation of a string with a binary number
      * @throws IllegalArgumentException if a line is null, empty or contains a character that is not '0' or '1'
      */
-    private static int convertWithBitwise(String line) {
+    static int convertWithBitwise(String line) {
         if (line == null || line.isEmpty()) {
             throw new IllegalArgumentException("Argument should NOT be null or empty");
         }
