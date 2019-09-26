@@ -1,4 +1,4 @@
-package epam.lecture01;
+package epam.lecture01.bitchanger;
 
 // 5. Используя побитовые операции изменить в переменной
 //    типа int бит с номером pos на единицу, на 0
