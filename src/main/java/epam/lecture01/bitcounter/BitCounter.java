@@ -1,4 +1,4 @@
-package epam.lecture01;
+package epam.lecture01.bitcounter;
 
 // 3. Используя побитовые операции подсчитать
 //    количество занимаемых бит для byte,short, int, long.
