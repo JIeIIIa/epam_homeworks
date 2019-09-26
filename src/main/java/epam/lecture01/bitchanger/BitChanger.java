@@ -10,7 +10,8 @@ public class BitChanger {
     private static final String YES = "y";
 
     public static void main(String[] args) {
-        BitChangerService bitChangerService = new BitChangerService();
+        PositionValidator positionValidator = new PositionValidator();
+        BitChangerService bitChangerService = new BitChangerService(positionValidator);
         int number = 0b011010;
         System.out.println("Before = " + number + "   After = " + bitChangerService.change(number, 1, true));
         System.out.println("Before = " + number + "   After = " + bitChangerService.change(number, 2, false));

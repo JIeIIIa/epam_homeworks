@@ -1,6 +1,12 @@
 package epam.lecture01.bitchanger;
 
 public class BitChangerService {
+    private PositionValidator positionValidator;
+
+    public BitChangerService(PositionValidator positionValidator) {
+        this.positionValidator = positionValidator;
+    }
+
     /**
      * Change a bit in the specified position in a given number
      *
@@ -11,9 +17,7 @@ public class BitChangerService {
      * @throws IllegalArgumentException if a position the less than 1 or the greater than 32
      */
     int change(int number, int pos, boolean enabled) {
-        if (pos < 1 || pos > 32) {
-            throw new IllegalArgumentException("Position should be in range [1, 32]");
-        }
+        positionValidator.validate(pos);
         int bit = enabled ? 1 : 0;
         int mask = 1 << pos - 1;
         return (number & ~mask) |
