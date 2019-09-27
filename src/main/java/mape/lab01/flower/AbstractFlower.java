@@ -9,6 +9,8 @@ public abstract class AbstractFlower {
 
     private int freshnessLevel;
 
+    private int price;
+
     public AbstractFlower(String name) {
         this.NAME = name;
     }
@@ -33,6 +35,14 @@ public abstract class AbstractFlower {
         this.freshnessLevel = freshnessLevel;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,18 +50,20 @@ public abstract class AbstractFlower {
         AbstractFlower that = (AbstractFlower) o;
         return length == that.length &&
             freshnessLevel == that.freshnessLevel &&
+            price == that.price &&
             Objects.equals(NAME, that.NAME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(NAME, length, freshnessLevel);
+        return Objects.hash(NAME, length, freshnessLevel, price);
     }
 
     @Override
     public String toString() {
         return "NAME='" + NAME + '\'' +
             ", length=" + length +
+            ", price=" + price +
             ", freshnessLevel=" + freshnessLevel;
     }
 }
