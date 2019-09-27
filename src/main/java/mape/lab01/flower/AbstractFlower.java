@@ -1,8 +1,9 @@
 package mape.lab01.flower;
 
+import mape.lab01.Valuable;
 import java.util.Objects;
 
-public abstract class AbstractFlower {
+public abstract class AbstractFlower implements Valuable {
     private final String NAME;
 
     private int length;
@@ -35,6 +36,7 @@ public abstract class AbstractFlower {
         this.freshnessLevel = freshnessLevel;
     }
 
+    @Override
     public int getPrice() {
         return price;
     }
