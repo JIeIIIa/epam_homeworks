@@ -62,12 +62,12 @@ public class Bouquet {
 
     private String toString(List<AbstractFlower> flowers, List<Accessory> accessories) {
         StringBuilder sb = new StringBuilder("Bouquet\n");
-        for (AbstractFlower flower : flowers) {
-            sb.append("   ").append(flowers).append("\n");
+        for (int i = 0; i< flowers.size(); i++) {
+            sb.append(String.format("   %3d: %s\n", i, flowers.get(i)));
         }
         sb.append("with accessories\n");
-        for (Accessory accessory : accessories) {
-            sb.append("   ").append(accessory).append("\n");
+        for (int i = 0; i< accessories.size(); i++) {
+            sb.append(String.format("   %3d: %s\n", i, accessories.get(i)));
         }
         return sb.toString();
     }
