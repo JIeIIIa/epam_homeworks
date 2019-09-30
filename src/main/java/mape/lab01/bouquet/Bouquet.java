@@ -12,11 +12,20 @@ public class Bouquet {
     private final List<AbstractFlower> flowers = new ArrayList<>();
     private final List<Accessory> accessories = new ArrayList<>();
 
+    List<AbstractFlower> getFlowers() {
+        return flowers;
+    }
+
+    List<Accessory> getAccessories() {
+        return accessories;
+    }
+
     public void addFlower(AbstractFlower flower) {
         flowers.add(flower);
     }
 
     public AbstractFlower removeFlower(int index) {
+        validateIndex(flowers, index);
         return flowers.remove(index);
     }
 
@@ -25,7 +34,14 @@ public class Bouquet {
     }
 
     public Accessory removeAccessory(int index) {
+        validateIndex(accessories, index);
         return accessories.remove(index);
+    }
+
+    private <T> void validateIndex(List<T> list, int index) {
+        if (index < 0 || index >= list.size()) {
+            throw new IllegalArgumentException("Wrong index = " + index + ",   size = " + list.size());
+        }
     }
 
     public int totalPrice() {
