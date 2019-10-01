@@ -1,24 +1,22 @@
-package epam.lecture01;
+package epam.lecture01.bitcounter;
 
-// 3. Используя побитовые операции подсчитать
-//    количество занимаемых бит для byte,short, int, long.
+public class BitCounterService {
 
-public class BitCounter {
-    public static void main(String[] args) {
-        System.out.println("byte  has " + proceed(byte.class) + " bits");
-        System.out.println("short has " + proceed(short.class) + " bits");
-        System.out.println("int   has " + proceed(int.class) + " bits");
-        System.out.println("long  has " + proceed(long.class) + " bits");
+    private ClassNameConverter classNameConverter;
+
+    public BitCounterService(ClassNameConverter classNameConverter) {
+        this.classNameConverter = classNameConverter;
     }
 
     /**
      * Finds total bits in a given class
      *
-     * @param clazz {@link Class} for calculate. Expected byte, short, int or long
+     * @param className for calculate. Expected "byte", "short", "int" or "long"
      * @return total bits in a given class
      * @throws IllegalArgumentException if class do not equal to one of the expected class
      */
-    private static int proceed(Class clazz) {
+    int proceed(String className) {
+        Class clazz = classNameConverter.convert(className);
         int count = 1;
         long number = 1;
         do {
