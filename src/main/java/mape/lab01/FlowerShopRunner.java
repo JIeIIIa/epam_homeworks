@@ -38,7 +38,7 @@ public class FlowerShopRunner {
                     info(bouquet);
                     break;
                 case 6:
-                    System.out.println(bouquet.printByFreshness());;
+                    System.out.println(bouquet.toStringByFreshness());;
                     break;
                 case 7:
                     filter(bouquet);

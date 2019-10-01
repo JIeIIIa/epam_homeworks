@@ -132,7 +132,7 @@ public class BouquetTest {
     public void printEmptyBouquetByFreshness() {
         String expected = "Bouquet\n" + "with accessories\n";
 
-        assertThat(instance.printByFreshness()).isEqualTo(expected);
+        assertThat(instance.toStringByFreshness()).isEqualTo(expected);
     }
 
     @Test
@@ -147,7 +147,7 @@ public class BouquetTest {
             "     2: Chamomile{ NAME='Chamomile', length=5, price=25, freshnessLevel=42, petals=5}\n" +
             "with accessories\n";
 
-        assertThat(instance.printByFreshness()).isEqualTo(expected);
+        assertThat(instance.toStringByFreshness()).isEqualTo(expected);
     }
 
     @Test

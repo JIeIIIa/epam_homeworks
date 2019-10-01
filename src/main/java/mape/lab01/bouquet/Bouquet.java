@@ -51,7 +51,7 @@ public class Bouquet {
             .reduce(0, Integer::sum);
     }
 
-    public String printByFreshness() {
+    public String toStringByFreshness() {
         Comparator<AbstractFlower> freshLevelComparator = Comparator
             .comparingInt(AbstractFlower::getFreshnessLevel)
             .reversed();
