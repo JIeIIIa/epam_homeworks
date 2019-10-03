@@ -1,6 +1,7 @@
 package mape.lab02.service;
 
 import mape.lab02.text.Char;
+import mape.lab02.text.Sentence;
 import mape.lab02.text.TextItem;
 import mape.lab02.text.Word;
 import mape.lab02.text.WordDelimiter;
@@ -118,9 +119,10 @@ public class SentenceServiceTest {
             new WordDelimiter(";"), new WordDelimiter(" "),
             new Word(helloList), new WordDelimiter(" "),
             new Word(worldList));
+        Sentence sentence = new Sentence(items);
         List<Word> expected = asList(new Word(helloList), new Word(worldList));
 
-        List<Word> result = instance.wordsStream(items).collect(Collectors.toList());
+        List<Word> result = instance.wordsStream(sentence).collect(Collectors.toList());
 
         assertThat(result).isEqualTo(expected);
     }

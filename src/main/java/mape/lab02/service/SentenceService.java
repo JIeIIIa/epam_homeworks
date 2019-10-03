@@ -1,5 +1,6 @@
 package mape.lab02.service;
 
+import mape.lab02.text.Sentence;
 import mape.lab02.text.TextItem;
 import mape.lab02.text.Word;
 import mape.lab02.text.WordDelimiter;
@@ -33,12 +34,13 @@ public class SentenceService {
         return items;
     }
 
-    public Stream<Word> wordsStream(List<TextItem> items) {
-        if(items == null) {
+    public Stream<Word> wordsStream(Sentence sentence) {
+        if(sentence == null) {
             throw new IllegalArgumentException("Argument should be non null");
         }
 
-        return items.stream()
+        return sentence.getElements()
+            .stream()
             .filter(i -> TextItem.TYPE.WORD.equals(i.getType()))
             .map(i -> (Word) i)
             .map(i -> new Word(i.getChars()));
