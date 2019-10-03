@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Sentence implements TextItem {
     public static final Pattern WORD_PATTERN = Pattern.compile("[^,\\s;:\"]+");
+    public static final Pattern SENTENCE_PATTERN = Pattern.compile("[^.!?]");
 
     private final String text;
 
