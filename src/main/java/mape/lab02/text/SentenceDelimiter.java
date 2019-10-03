@@ -3,6 +3,7 @@ package mape.lab02.text;
 import java.util.Objects;
 
 public class SentenceDelimiter implements TextItem {
+    public static final String CHARACTER_SENTENCE_DELIMITER_REGEX = "[.!?]";
     private final String text;
 
     public SentenceDelimiter(String text) {
