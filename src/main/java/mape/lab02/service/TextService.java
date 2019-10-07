@@ -1,5 +1,6 @@
 package mape.lab02.service;
 
+import mape.lab02.text.Char;
 import mape.lab02.text.Sentence;
 import mape.lab02.text.SentenceDelimiter;
 import mape.lab02.text.Text;
@@ -27,7 +28,7 @@ public class TextService {
 
         String[] split = text.split(SENTENCE_SPLIT_REGEX);
 
-        ArrayList<TextItem> items = new ArrayList<>(split.length);
+        List<TextItem> items = new ArrayList<>(split.length);
         for (String s : split) {
             if (Sentence.SENTENCE_PATTERN.matcher(s).find()) {
                 items.add(new Sentence(sentenceService.parse(s)));
@@ -51,14 +52,14 @@ public class TextService {
             .map(i -> new Sentence(i.getElements()));
     }
 
-    public List<Word> sortByCharCount(Text text, final char ch) {
+    public List<Word> sortByCharCount(Text text, final Char ch) {
         if (text == null) {
             throw new IllegalArgumentException("Text should be non null");
         }
 
         Comparator<Word> wordComparator = Comparator
             .comparingLong((Word w) -> wordService.charCount(w, ch))
-            .reversed()
+//            .reversed()
             .thenComparing(Word::getText);
 
         return sentenceStream(text)

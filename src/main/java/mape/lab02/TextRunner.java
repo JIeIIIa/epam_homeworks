@@ -1,6 +1,7 @@
 package mape.lab02;
 
 import mape.lab02.service.TextService;
+import mape.lab02.text.Char;
 import mape.lab02.text.Text;
 import java.util.Scanner;
 
@@ -23,7 +24,8 @@ public class TextRunner {
         System.out.println();
 
         System.out.print("Enter char to sort words>>");
-        char ch = scanner.nextLine().charAt(0);
+        char enteredChar = scanner.nextLine().charAt(0);
+        Char ch = new Char(enteredChar);
 
         TextService textService = new TextService();
         Text parsedText = textService.parse(TEXT);

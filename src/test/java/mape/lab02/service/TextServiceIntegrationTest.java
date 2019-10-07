@@ -1,5 +1,6 @@
 package mape.lab02.service;
 
+import mape.lab02.text.Char;
 import mape.lab02.text.Text;
 import mape.lab02.text.Word;
 import org.assertj.core.api.Assertions;
@@ -21,7 +22,7 @@ public class TextServiceIntegrationTest {
         String text = "first,  second,  alfa, star";
         Text parsed = instance.parse(text);
 
-        List<String> result = instance.sortByCharCount(parsed, 'w')
+        List<String> result = instance.sortByCharCount(parsed, new Char( 'w'))
             .stream()
             .map(Word::getText)
             .collect(Collectors.toList());
@@ -34,7 +35,7 @@ public class TextServiceIntegrationTest {
         String text = "firsta,  asecond,  alf, star";
         Text parsed = instance.parse(text);
 
-        List<String> result = instance.sortByCharCount(parsed, 'a')
+        List<String> result = instance.sortByCharCount(parsed, new Char( 'a'))
             .stream()
             .map(Word::getText)
             .collect(Collectors.toList());
@@ -47,7 +48,7 @@ public class TextServiceIntegrationTest {
         String text = "first?  second!  alfa, star.";
         Text parsed = instance.parse(text);
 
-        List<String> result = instance.sortByCharCount(parsed, 'a')
+        List<String> result = instance.sortByCharCount(parsed, new Char( 'a'))
             .stream()
             .map(Word::getText)
             .collect(Collectors.toList());

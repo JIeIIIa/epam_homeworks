@@ -20,14 +20,13 @@ public class WordService {
         return new Word(chars);
     }
 
-    public long charCount(Word word, char ch) {
+    public long charCount(Word word, Char ch) {
         if (word == null) {
             throw new IllegalArgumentException("Word should be non null");
         }
 
         return word.getChars().stream()
-            .map(Char::getText)
-            .filter(c -> c.equals("" + ch))
+            .filter(c -> c.equals(ch))
             .count();
     }
 }
