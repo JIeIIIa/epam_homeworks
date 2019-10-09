@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" strict="true">
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    %d{HH:mm:ss.SSS} %highlight{[%-5level]} [%-16.16t] %60.60c{2.4} - %msg%n
+                </pattern>
+                <disableAnsi>false</disableAnsi>
+            </PatternLayout>
+        </Console>
+        <Appender type="RollingFile" name="App-File-Appender" fileName="flower-shop.log"
+                  filePattern="${appLog}-%d{yyyy-MM-dd}-%i.log">
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-16.16t] %80.80c - %msg%n
+                </pattern>
+            </PatternLayout>
+        </Appender>
+
+        <Async name="ASYNC">
+            <AppenderRef ref="App-File-Appender"/>
+            <AppenderRef ref="Console"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="mape.lab01" level="INFO" additivity="false">
+            <AppenderRef ref="ASYNC"/>
+        </Logger>
+        <Logger name="mape.lab01.bouquet" level="TRACE" additivity="false">
+            <AppenderRef ref="ASYNC"/>
+        </Logger>
+
+        <!-- Root Logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+
+
+</Configuration>
