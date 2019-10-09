@@ -2,6 +2,8 @@ package mape.lab01.bouquet;
 
 import mape.lab01.Valuable;
 import mape.lab01.flower.AbstractFlower;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Bouquet {
+    private final static Logger LOG = LogManager.getLogger(Bouquet.class);
+
     private final List<AbstractFlower> flowers = new ArrayList<>();
     private final List<Accessory> accessories = new ArrayList<>();
 
@@ -21,19 +25,23 @@ public class Bouquet {
     }
 
     public void addFlower(AbstractFlower flower) {
+        LOG.trace("Add flower: {}", flower);
         flowers.add(flower);
     }
 
     public AbstractFlower removeFlower(int index) {
+        LOG.trace("Remove flower: index = {}", index);
         validateIndex(flowers, index);
         return flowers.remove(index);
     }
 
     public void addAccessory(Accessory accessory) {
+        LOG.trace("Add accessory: {}", accessory);
         accessories.add(accessory);
     }
 
     public Accessory removeAccessory(int index) {
+        LOG.trace("Remove accessory: index = {}", index);
         validateIndex(accessories, index);
         return accessories.remove(index);
     }
