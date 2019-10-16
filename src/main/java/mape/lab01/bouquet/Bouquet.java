@@ -1,9 +1,10 @@
 package mape.lab01.bouquet;
 
 import mape.lab01.Valuable;
-import mape.lab01.flower.AbstractFlower;
+import mape.lab01.entity.flower.AbstractFlower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

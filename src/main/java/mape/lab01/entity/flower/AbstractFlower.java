@@ -1,6 +1,7 @@
-package mape.lab01.flower;
+package mape.lab01.entity.flower;
 
 import mape.lab01.Valuable;
+
 import java.util.Objects;
 
 public abstract class AbstractFlower implements Valuable {

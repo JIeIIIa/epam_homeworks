@@ -1,12 +1,14 @@
 package mape.lab01.bouquet;
 
-import mape.lab01.flower.AbstractFlower;
-import mape.lab01.flower.Chamomile;
-import mape.lab01.flower.Lily;
-import mape.lab01.flower.Rose;
+import mape.lab01.entity.flower.AbstractFlower;
+import mape.lab01.entity.flower.Chamomile;
+import mape.lab01.entity.flower.Lily;
+import mape.lab01.entity.flower.Rose;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BouquetTest {

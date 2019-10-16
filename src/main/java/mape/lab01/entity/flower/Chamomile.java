@@ -1,4 +1,4 @@
-package mape.lab01.flower;
+package mape.lab01.entity.flower;
 
 import java.util.Objects;
 

@@ -2,10 +2,10 @@ package mape.lab01.service;
 
 import mape.lab01.bouquet.Accessory;
 import mape.lab01.bouquet.Bouquet;
-import mape.lab01.flower.AbstractFlower;
-import mape.lab01.flower.Chamomile;
-import mape.lab01.flower.Lily;
-import mape.lab01.flower.Rose;
+import mape.lab01.entity.flower.AbstractFlower;
+import mape.lab01.entity.flower.Chamomile;
+import mape.lab01.entity.flower.Lily;
+import mape.lab01.entity.flower.Rose;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
