@@ -1,4 +1,4 @@
-package mape.lab01;
+package mape.lab01.service;
 
 import mape.lab01.bouquet.Accessory;
 import mape.lab01.bouquet.Bouquet;
@@ -8,19 +8,23 @@ import mape.lab01.flower.Lily;
 import mape.lab01.flower.Rose;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Scanner;
+
 import static java.lang.System.exit;
 
-public class FlowerShopRunner {
-    private static final Logger LOG = LogManager.getLogger(FlowerShopRunner.class);
+@Service
+public class FlowerShopService {
+    private static final Logger LOG = LogManager.getLogger(FlowerShopService.class);
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public void run() {
         LOG.info("Application was started...");
         Bouquet bouquet = new Bouquet();
-        int choose = 0;
+        int choose;
         do {
             printMenuItem();
             choose = scanner.nextInt();
@@ -42,7 +46,7 @@ public class FlowerShopRunner {
                     info(bouquet);
                     break;
                 case 6:
-                    System.out.println(bouquet.toStringByFreshness());;
+                    System.out.println(bouquet.toStringByFreshness());
                     break;
                 case 7:
                     filter(bouquet);
@@ -58,7 +62,7 @@ public class FlowerShopRunner {
         } while (true);
     }
 
-    private static void printMenuItem() {
+    private void printMenuItem() {
         System.out.println("1 - add flower to bouquet");
         System.out.println("2 - remove flower from ");
         System.out.println("3 - add a new accessory");
@@ -72,7 +76,7 @@ public class FlowerShopRunner {
         System.out.print(">>");
     }
 
-    private static void addFlower(Bouquet bouquet) {
+    private void addFlower(Bouquet bouquet) {
         LOG.debug("Add flower");
         System.out.println("Choose a flower to add to bouquet:");
         System.out.println("1 - chamomile");
@@ -101,7 +105,7 @@ public class FlowerShopRunner {
         bouquet.addFlower(flower);
     }
 
-    private static AbstractFlower createFlower(String choose) {
+    private AbstractFlower createFlower(String choose) {
         AbstractFlower flower;
         switch (choose) {
             case "1":
@@ -130,7 +134,7 @@ public class FlowerShopRunner {
         return flower;
     }
 
-    private static void removeFlower(Bouquet bouquet) {
+    private void removeFlower(Bouquet bouquet) {
         System.out.print("Remove flower with index>>");
         int index = scanner.nextInt();
         scanner.nextLine();
@@ -143,7 +147,7 @@ public class FlowerShopRunner {
         }
     }
 
-    private static void addAccessory(Bouquet bouquet) {
+    private void addAccessory(Bouquet bouquet) {
         System.out.print("accessory's name>>");
         String name = scanner.nextLine();
         System.out.print("accessory's price>>");
@@ -155,7 +159,7 @@ public class FlowerShopRunner {
         bouquet.addAccessory(accessory);
     }
 
-    private static void removeAccessory(Bouquet bouquet) {
+    private void removeAccessory(Bouquet bouquet) {
         System.out.print("Remove accessory with index>>");
         int index = scanner.nextInt();
         scanner.nextLine();
@@ -168,12 +172,12 @@ public class FlowerShopRunner {
         }
     }
 
-    private static void info(Bouquet bouquet) {
+    private void info(Bouquet bouquet) {
         LOG.debug(bouquet);
         System.out.println(bouquet);
     }
 
-    private static void filter(Bouquet bouquet) {
+    private void filter(Bouquet bouquet) {
         System.out.print("min length>>");
         int min = scanner.nextInt();
         scanner.nextLine();
@@ -195,7 +199,7 @@ public class FlowerShopRunner {
         }
     }
 
-    private static void totalPrice(Bouquet bouquet) {
+    private void totalPrice(Bouquet bouquet) {
         LOG.info("Total price: {}", bouquet.totalPrice());
         System.out.println("Total price = " + bouquet.totalPrice());
     }
