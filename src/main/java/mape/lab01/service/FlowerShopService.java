@@ -1,7 +1,7 @@
 package mape.lab01.service;
 
-import mape.lab01.bouquet.Accessory;
-import mape.lab01.bouquet.Bouquet;
+import mape.lab01.entity.bouquet.Accessory;
+import mape.lab01.entity.bouquet.Bouquet;
 import mape.lab01.entity.flower.AbstractFlower;
 import mape.lab01.entity.flower.Chamomile;
 import mape.lab01.entity.flower.Lily;

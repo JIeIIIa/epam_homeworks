@@ -1,4 +1,4 @@
-package mape.lab01.bouquet;
+package mape.lab01.entity.bouquet;
 
 import mape.lab01.entity.flower.AbstractFlower;
 import mape.lab01.entity.flower.Chamomile;

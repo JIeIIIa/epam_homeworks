@@ -1,6 +1,7 @@
-package mape.lab01.bouquet;
+package mape.lab01.entity.bouquet;
 
 import mape.lab01.Valuable;
+
 import java.util.Objects;
 
 public class Accessory implements Valuable {
