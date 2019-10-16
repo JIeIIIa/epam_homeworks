@@ -1,5 +1,6 @@
-package mape.lab01.entity.bouquet;
+package mape.lab01.service;
 
+import mape.lab01.entity.bouquet.Accessory;
 import mape.lab01.entity.flower.AbstractFlower;
 import mape.lab01.entity.flower.Chamomile;
 import mape.lab01.entity.flower.Lily;
@@ -11,16 +12,18 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BouquetTest {
+public class BouquetServiceTest {
 
-    private Bouquet instance;
+    private BouquetService instance;
+
     private Rose rose;
     private Lily lily;
     private Chamomile chamomile;
 
     @Before
     public void setUp() {
-        instance = new Bouquet();
+        instance = new BouquetService();
+        instance.create();
 
         rose = new Rose(42);
         rose.setLength(10);
@@ -134,7 +137,7 @@ public class BouquetTest {
     public void printEmptyBouquetByFreshness() {
         String expected = "Bouquet\n" + "with accessories\n";
 
-        assertThat(instance.toStringByFreshness()).isEqualTo(expected);
+        assertThat(instance.bouquetAsStringByFreshness()).isEqualTo(expected);
     }
 
     @Test
@@ -149,7 +152,7 @@ public class BouquetTest {
             "     2: Chamomile{ NAME='Chamomile', length=5, price=25, freshnessLevel=42, petals=5}\n" +
             "with accessories\n";
 
-        assertThat(instance.toStringByFreshness()).isEqualTo(expected);
+        assertThat(instance.bouquetAsStringByFreshness()).isEqualTo(expected);
     }
 
     @Test
