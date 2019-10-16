@@ -6,15 +6,19 @@ import mape.lab01.flower.AbstractFlower;
 import mape.lab01.flower.Chamomile;
 import mape.lab01.flower.Lily;
 import mape.lab01.flower.Rose;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.List;
 import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class FlowerShopRunner {
+    private static final Logger LOG = LogManager.getLogger(FlowerShopRunner.class);
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        LOG.info("Application was started...");
         Bouquet bouquet = new Bouquet();
         int choose = 0;
         do {
@@ -69,6 +73,7 @@ public class FlowerShopRunner {
     }
 
     private static void addFlower(Bouquet bouquet) {
+        LOG.debug("Add flower");
         System.out.println("Choose a flower to add to bouquet:");
         System.out.println("1 - chamomile");
         System.out.println("2 - lily");
@@ -100,24 +105,28 @@ public class FlowerShopRunner {
         AbstractFlower flower;
         switch (choose) {
             case "1":
+                LOG.debug("Creating chamomile...");
                 System.out.print("chamomile's petals>>");
                 int petals = scanner.nextInt();
                 scanner.nextLine();
                 flower = new Chamomile(petals);
                 break;
             case "2":
+                LOG.debug("Creating lily...");
                 System.out.print("lily's size>>");
                 int size = scanner.nextInt();
                 scanner.nextLine();
                 flower = new Lily(size);
                 break;
             default:
+                LOG.debug("Creating rose...");
                 System.out.print("rose's thorns>>");
                 int thorns = scanner.nextInt();
                 scanner.nextLine();
                 flower = new Rose(thorns);
                 break;
         }
+        LOG.trace("Flower was created: {}", flower);
         return flower;
     }
 
@@ -130,6 +139,7 @@ public class FlowerShopRunner {
             System.out.println("Something went wrong( Flower with [index = " + index + "] was not removed.");
         } else {
             System.out.println(flower + "was removed");
+            LOG.debug("Flower was removed: {}", flower);
         }
     }
 
@@ -141,6 +151,7 @@ public class FlowerShopRunner {
         scanner.nextLine();
         Accessory accessory = new Accessory(name, price);
 
+        LOG.debug("Add accessory: {}", accessory);
         bouquet.addAccessory(accessory);
     }
 
@@ -152,11 +163,13 @@ public class FlowerShopRunner {
         if (accessory == null) {
             System.out.println("Something went wrong( Accessory with [index = " + index + "] was not removed.");
         } else {
+            LOG.debug("Accessory was removed: {}", accessory);
             System.out.println(accessory + "was removed");
         }
     }
 
     private static void info(Bouquet bouquet) {
+        LOG.debug(bouquet);
         System.out.println(bouquet);
     }
 
@@ -167,6 +180,7 @@ public class FlowerShopRunner {
         System.out.print("max length>>");
         int max = scanner.nextInt();
         scanner.nextLine();
+        LOG.trace("filter from {} to {}", min, max);
 
         List<AbstractFlower> filter;
         try {
@@ -182,6 +196,7 @@ public class FlowerShopRunner {
     }
 
     private static void totalPrice(Bouquet bouquet) {
+        LOG.info("Total price: {}", bouquet.totalPrice());
         System.out.println("Total price = " + bouquet.totalPrice());
     }
 }
