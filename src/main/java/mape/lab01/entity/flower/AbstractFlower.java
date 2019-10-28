@@ -5,6 +5,8 @@ import mape.lab01.Valuable;
 import java.util.Objects;
 
 public abstract class AbstractFlower implements Valuable {
+    private int id;
+
     private final String NAME;
 
     private int length;
@@ -15,6 +17,14 @@ public abstract class AbstractFlower implements Valuable {
 
     public AbstractFlower(String name) {
         this.NAME = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
