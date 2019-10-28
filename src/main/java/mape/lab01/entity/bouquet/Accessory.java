@@ -5,6 +5,7 @@ import mape.lab01.Valuable;
 import java.util.Objects;
 
 public class Accessory implements Valuable {
+    private int id;
     private String name;
     private int price;
 
@@ -14,6 +15,14 @@ public class Accessory implements Valuable {
     public Accessory(String name, int price) {
         this.name = name;
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
