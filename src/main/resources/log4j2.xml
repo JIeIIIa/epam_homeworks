@@ -33,7 +33,7 @@
         <Logger name="mape.lab01" level="INFO" additivity="false">
             <AppenderRef ref="ASYNC"/>
         </Logger>
-        <Logger name="mape.lab01.bouquet" level="TRACE" additivity="false">
+        <Logger name="mape.lab01.entity.bouquet" level="TRACE" additivity="false">
             <AppenderRef ref="ASYNC"/>
         </Logger>
 

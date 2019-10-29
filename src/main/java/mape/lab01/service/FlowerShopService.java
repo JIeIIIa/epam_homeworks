@@ -1,54 +1,62 @@
-package mape.lab01;
+package mape.lab01.service;
 
-import mape.lab01.bouquet.Accessory;
-import mape.lab01.bouquet.Bouquet;
-import mape.lab01.flower.AbstractFlower;
-import mape.lab01.flower.Chamomile;
-import mape.lab01.flower.Lily;
-import mape.lab01.flower.Rose;
+import mape.lab01.entity.bouquet.Accessory;
+import mape.lab01.entity.flower.AbstractFlower;
+import mape.lab01.entity.flower.Chamomile;
+import mape.lab01.entity.flower.Lily;
+import mape.lab01.entity.flower.Rose;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Scanner;
+
 import static java.lang.System.exit;
 
-public class FlowerShopRunner {
-    private static final Logger LOG = LogManager.getLogger(FlowerShopRunner.class);
+@Service
+public class FlowerShopService {
 
+    private static final Logger LOG = LogManager.getLogger(FlowerShopService.class);
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        LOG.info("Application was started...");
-        Bouquet bouquet = new Bouquet();
-        int choose = 0;
+    private final BouquetService bouquetService;
+
+    public FlowerShopService(BouquetService bouquetService) {
+        this.bouquetService = bouquetService;
+    }
+
+    public void run() {
+        bouquetService.create();
+        int choose;
         do {
             printMenuItem();
             choose = scanner.nextInt();
             scanner.nextLine();
             switch (choose) {
                 case 1:
-                    addFlower(bouquet);
+                    addFlower();
                     break;
                 case 2:
-                    removeFlower(bouquet);
+                    removeFlower();
                     break;
                 case 3:
-                    addAccessory(bouquet);
+                    addAccessory();
                     break;
                 case 4:
-                    removeAccessory(bouquet);
+                    removeAccessory();
                     break;
                 case 5:
-                    info(bouquet);
+                    info();
                     break;
                 case 6:
-                    System.out.println(bouquet.toStringByFreshness());;
+                    System.out.println(bouquetService.bouquetAsStringByFreshness());
                     break;
                 case 7:
-                    filter(bouquet);
+                    filter();
                     break;
                 case 8:
-                    totalPrice(bouquet);
+                    totalPrice();
                     break;
                 case 0:
                     exit(0);
@@ -58,7 +66,7 @@ public class FlowerShopRunner {
         } while (true);
     }
 
-    private static void printMenuItem() {
+    private void printMenuItem() {
         System.out.println("1 - add flower to bouquet");
         System.out.println("2 - remove flower from ");
         System.out.println("3 - add a new accessory");
@@ -72,7 +80,7 @@ public class FlowerShopRunner {
         System.out.print(">>");
     }
 
-    private static void addFlower(Bouquet bouquet) {
+    private void addFlower() {
         LOG.debug("Add flower");
         System.out.println("Choose a flower to add to bouquet:");
         System.out.println("1 - chamomile");
@@ -98,10 +106,10 @@ public class FlowerShopRunner {
         flower.setFreshnessLevel(freshnessLevel);
         flower.setPrice(price);
 
-        bouquet.addFlower(flower);
+        bouquetService.addFlower(flower);
     }
 
-    private static AbstractFlower createFlower(String choose) {
+    private AbstractFlower createFlower(String choose) {
         AbstractFlower flower;
         switch (choose) {
             case "1":
@@ -130,11 +138,11 @@ public class FlowerShopRunner {
         return flower;
     }
 
-    private static void removeFlower(Bouquet bouquet) {
+    private void removeFlower() {
         System.out.print("Remove flower with index>>");
         int index = scanner.nextInt();
         scanner.nextLine();
-        AbstractFlower flower = bouquet.removeFlower(index);
+        AbstractFlower flower = bouquetService.removeFlower(index);
         if (flower == null) {
             System.out.println("Something went wrong( Flower with [index = " + index + "] was not removed.");
         } else {
@@ -143,7 +151,7 @@ public class FlowerShopRunner {
         }
     }
 
-    private static void addAccessory(Bouquet bouquet) {
+    private void addAccessory() {
         System.out.print("accessory's name>>");
         String name = scanner.nextLine();
         System.out.print("accessory's price>>");
@@ -152,14 +160,14 @@ public class FlowerShopRunner {
         Accessory accessory = new Accessory(name, price);
 
         LOG.debug("Add accessory: {}", accessory);
-        bouquet.addAccessory(accessory);
+        bouquetService.addAccessory(accessory);
     }
 
-    private static void removeAccessory(Bouquet bouquet) {
+    private void removeAccessory() {
         System.out.print("Remove accessory with index>>");
         int index = scanner.nextInt();
         scanner.nextLine();
-        Accessory accessory = bouquet.removeAccessory(index);
+        Accessory accessory = bouquetService.removeAccessory(index);
         if (accessory == null) {
             System.out.println("Something went wrong( Accessory with [index = " + index + "] was not removed.");
         } else {
@@ -168,12 +176,12 @@ public class FlowerShopRunner {
         }
     }
 
-    private static void info(Bouquet bouquet) {
-        LOG.debug(bouquet);
-        System.out.println(bouquet);
+    private void info() {
+        LOG.debug(bouquetService.toString());
+        System.out.println(bouquetService.toString());
     }
 
-    private static void filter(Bouquet bouquet) {
+    private void filter() {
         System.out.print("min length>>");
         int min = scanner.nextInt();
         scanner.nextLine();
@@ -184,7 +192,7 @@ public class FlowerShopRunner {
 
         List<AbstractFlower> filter;
         try {
-            filter = bouquet.filter(min, max);
+            filter = bouquetService.filter(min, max);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
@@ -195,8 +203,8 @@ public class FlowerShopRunner {
         }
     }
 
-    private static void totalPrice(Bouquet bouquet) {
-        LOG.info("Total price: {}", bouquet.totalPrice());
-        System.out.println("Total price = " + bouquet.totalPrice());
+    private void totalPrice() {
+        LOG.info("Total price: {}", bouquetService.totalPrice());
+        System.out.println("Total price = " + bouquetService.totalPrice());
     }
 }
